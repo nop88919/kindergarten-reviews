@@ -6,8 +6,32 @@
     <title>חוות דעת על מסגרות חינוכיות</title>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <style>
+        body {
+            text-align: center;
+            background: url('https://i.imgur.com/OZLYcZz.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
     <script>
-        // הגדרות Firebase
         const firebaseConfig = {
             apiKey: "YOUR_API_KEY",
             authDomain: "YOUR_AUTH_DOMAIN",
@@ -21,22 +45,21 @@
     </script>
 </head>
 <body>
-    <h1>חוות דעת על גנים ובתי ספר</h1>
-    <input type="text" id="search" placeholder="חפש לפי שם מסגרת/עיר/גיל">
-    <button onclick="searchInstitutions()">חפש</button>
-    <button onclick="openAddInstitutionForm()">הוסף מסגרת</button>
-    
-    <div id="institutions"></div>
-    
-    <div id="addInstitutionForm" style="display: none;">
-        <h2>הוסף מסגרת</h2>
-        <input type="text" id="name" placeholder="שם המסגרת">
-        <input type="text" id="age" placeholder="גילאים">
-        <input type="text" id="city" placeholder="עיר">
-        <input type="text" id="neighborhood" placeholder="שכונה">
-        <button onclick="addInstitution()">שלח</button>
+    <div class="container">
+        <h1>חוות דעת על גנים ובתי ספר</h1>
+        <input type="text" id="search" placeholder="חפש לפי שם מסגרת/עיר/גיל">
+        <button onclick="searchInstitutions()">חפש</button>
+        <button onclick="openAddInstitutionForm()">הוסף מסגרת</button>
+        <div id="institutions"></div>
+        <div id="addInstitutionForm" class="form-container" style="display: none;">
+            <h2>הוסף מסגרת</h2>
+            <input type="text" id="name" placeholder="שם המסגרת">
+            <input type="text" id="age" placeholder="גילאים">
+            <input type="text" id="city" placeholder="עיר">
+            <input type="text" id="neighborhood" placeholder="שכונה">
+            <button onclick="addInstitution()">שלח</button>
+        </div>
     </div>
-    
     <script>
         function openAddInstitutionForm() {
             document.getElementById("addInstitutionForm").style.display = "block";
