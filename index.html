@@ -9,7 +9,7 @@
     <style>
         body {
             text-align: center;
-            background: url('https://img.freepik.com/free-vector/hand-drawn-sky-background_23-2149162812.jpg') no-repeat center center fixed;
+            background: url('pexels-cottonbro-3661267.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: Arial, sans-serif;
         }
@@ -53,9 +53,9 @@
         <div id="institutions"></div>
         <div id="addInstitutionForm" class="form-container" style="display: none;">
             <h2>הוסף מסגרת</h2>
-            <input type="text" id="name" placeholder="שם המסגרת" required>
-            <input type="text" id="age" placeholder="גילאים" required>
-            <input type="text" id="city" placeholder="עיר" required>
+            <input type="text" id="name" placeholder="שם המסגרת">
+            <input type="text" id="age" placeholder="גילאים">
+            <input type="text" id="city" placeholder="עיר">
             <input type="text" id="neighborhood" placeholder="שכונה">
             <button onclick="addInstitution()">שלח</button>
         </div>
@@ -66,10 +66,10 @@
         }
         
         function addInstitution() {
-            const name = document.getElementById("name").value.trim();
-            const age = document.getElementById("age").value.trim();
-            const city = document.getElementById("city").value.trim();
-            const neighborhood = document.getElementById("neighborhood").value.trim();
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const city = document.getElementById("city").value;
+            const neighborhood = document.getElementById("neighborhood").value;
             
             if (!name || !age || !city) {
                 alert("יש למלא את כל השדות החובה");
@@ -77,25 +77,15 @@
             }
             
             db.collection("institutions").add({
-                name: name,
-                age: age,
-                city: city,
-                neighborhood: neighborhood
+                name, age, city, neighborhood
             }).then(() => {
                 alert("המסגרת נוספה בהצלחה!");
                 document.getElementById("addInstitutionForm").style.display = "none";
-                document.getElementById("name").value = "";
-                document.getElementById("age").value = "";
-                document.getElementById("city").value = "";
-                document.getElementById("neighborhood").value = "";
-            }).catch((error) => {
-                console.error("Error adding document: ", error);
-                alert("שגיאה בהוספת המסגרת");
             });
         }
         
         function searchInstitutions() {
-            const searchTerm = document.getElementById("search").value.trim();
+            const searchTerm = document.getElementById("search").value;
             const institutionsDiv = document.getElementById("institutions");
             institutionsDiv.innerHTML = "";
             
@@ -108,9 +98,6 @@
                         institutionsDiv.appendChild(div);
                     }
                 });
-            }).catch((error) => {
-                console.error("Error fetching documents: ", error);
-                alert("שגיאה בחיפוש המסגרות");
             });
         }
     </script>
